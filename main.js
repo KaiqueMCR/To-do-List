@@ -28,19 +28,21 @@ function getTasks() {
   dataBank.forEach((task, index) => creatTasks(task.taskId, task.status, index))
 }
 
-function insertTask() {
-  let taskName = document.getElementById('newtask').value
+function insertTask(e) {
+  if (e.key === 'Enter' || e.target === document.getElementById('push')) {
+    let taskName = document.getElementById('newtask').value
 
-  if (taskName == '') {
-    alert('Please insert a task first')
-  } else {
-    const dataBank = getBank()
-    dataBank.push({ taskId: taskName, status: '' })
-    setBank(dataBank)
+    if (taskName == '') {
+      alert('Please insert a task first')
+    } else {
+      const dataBank = getBank()
+      dataBank.push({ taskId: taskName, status: '' })
+      setBank(dataBank)
 
-    getTasks()
+      getTasks()
 
-    document.getElementById('newtask').value = ''
+      document.getElementById('newtask').value = ''
+    }
   }
 }
 
@@ -70,6 +72,7 @@ function taskEvent(event) {
 }
 
 document.getElementById('push').addEventListener('click', insertTask)
+document.addEventListener('keypress', insertTask)
 document.getElementById('tasks').addEventListener('click', taskEvent)
 
 getTasks()
