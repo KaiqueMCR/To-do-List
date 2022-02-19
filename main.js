@@ -29,7 +29,7 @@ function getTasks() {
 }
 
 function insertTask(e) {
-  if (e.key === 'Enter' || e.target === document.getElementById('push')) {
+  if (e.key === 'Enter' || e.target.id == 'push') {
     let taskName = document.getElementById('newtask').value
 
     if (taskName == '') {
@@ -71,7 +71,7 @@ function taskEvent(event) {
   }
 }
 
-document.getElementById('push').addEventListener('click', insertTask)
+document.addEventListener('click', insertTask)
 document.addEventListener('keypress', insertTask)
 document.getElementById('tasks').addEventListener('click', taskEvent)
 
